@@ -1,0 +1,42 @@
+<html>
+<body>
+
+<h2>🌍 TravelGuideAI</h2>
+
+<input id="destination" placeholder="Destination"><br><br>
+<input id="duration" placeholder="Days"><br><br>
+<input id="interests" placeholder="Interests"><br><br>
+
+<button onclick="generate()">Generate</button>
+<button onclick="history()">View History</button>
+
+<pre id="output"></pre>
+
+<script>
+
+async function generate(){
+let res = await fetch("http://127.0.0.1:8000/generate",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+destination:destination.value,
+duration:parseInt(duration.value),
+interests:interests.value
+})
+});
+
+let data = await res.json();
+output.innerText=data.itinerary;
+}
+
+async function history(){
+let res=await fetch("http://127.0.0.1:8000/history");
+let data=await res.json();
+
+output.innerText=JSON.stringify(data,null,2);
+}
+
+</script>
+
+</body>
+</html>
