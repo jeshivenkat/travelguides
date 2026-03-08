@@ -1,16 +1,4 @@
-# Python virtual environments
-venv/
-backend/venv/
-
-# Python cache
+.env
 __pycache__/
 *.pyc
-
-# Environment files
-.env
-
-# Logs
-*.log
-
-# VS Code settings
-.vscode/
+.streamlit/
